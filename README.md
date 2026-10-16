@@ -46,7 +46,8 @@ e-moe/
 ├── scripts/                 # LM1B training and evaluation scripts
 ├── tools/eval_mauve.py      # MAUVE
 └── notebooks/
-    └── toy_2d_experiments.ipynb   # 2-D toy experiments
+    ├── toy_2d_experiments.ipynb     # 2-D toy experiments
+    └── inference_cost_flops.ipynb   # inference cost (FLOPs) of the LM1B models
 ```
 
 ## Setup
@@ -70,11 +71,18 @@ later runs.
 export DATA_CACHE=/path/to/data_cache
 ```
 
-## Toy Experiments
+## Toy Experiments and Ablations
 
-[`notebooks/toy_2d_experiments.ipynb`](notebooks/toy_2d_experiments.ipynb) contains the complete 2-D toy study
-(8-modes and Swiss-roll): data, the three models (MDLM, VADD, E-MoE), training over 3 seeds, the validity table
-over NFE and the sample figures. It runs on a single GPU in about 30 minutes.
+- **Toy experiments:** [`notebooks/toy_2d_experiments.ipynb`](notebooks/toy_2d_experiments.ipynb)
+
+  The complete 2-D toy study (8-modes and Swiss-roll): data, the three models (MDLM, VADD, E-MoE), training over 3 seeds,
+  the validity table over NFE and the sample figures. It runs on a single GPU in about 30 minutes.
+
+- **Inference cost:** [`notebooks/inference_cost_flops.ipynb`](notebooks/inference_cost_flops.ipynb)
+
+  FLOPs of the final LM1B models (MDLM, MDLM-MoE, E-MoE) loaded from the Hugging Face Hub: one denoising step layer by
+  layer and the full generation for NFE from 1 to 128. E-MoE has 3.8× more parameters than MDLM, but every token is
+  processed by one expert, so its compute matches MDLM up to the router (+0.07%).
 
 ## Checkpoints
 
@@ -148,7 +156,7 @@ python tools/eval_mauve.py
 ## Acknowledgements
 
 The LM1B code is built on [DUO](https://github.com/s-sahoo/duo) (Apache 2.0, Copyright 2025 Subham Sekhar Sahoo),
-and the VADD baseline follows [VADD](https://openreview.net/forum?id=yh7MV2V0ba) (Xie et al., 2026). We thank the
+and the VADD baseline follows [VADD](https://github.com/tyuxie/VADD) (Xie et al., 2026). We thank the
 authors for releasing their code.
 
 ## Citation
