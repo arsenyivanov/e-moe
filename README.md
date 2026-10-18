@@ -75,8 +75,9 @@ export DATA_CACHE=/path/to/data_cache
 
 - **Toy experiments:** [`notebooks/toy_2d_experiments.ipynb`](notebooks/toy_2d_experiments.ipynb)
 
-  The complete 2-D toy study (8-modes and Swiss-roll): data, the three models (MDLM, VADD, E-MoE), training over 3 seeds,
-  the validity table over NFE and the sample figures. It runs on a single GPU in about 30 minutes.
+  The complete 2-D toy study (8-modes, Swiss-roll and Checkerboard): data, the four models (MDLM, MDLM-MoE, VADD, E-MoE),
+  training over 3 seeds, the validity and TV distance tables over NFE, the E-MoE ablation (routing, KL warmup, number of experts),
+  E-MoE with free bits on Swiss-roll and the sample figures. It runs from scratch on a single GPU in about 2 hours.
 
 - **Inference cost:** [`notebooks/inference_cost_flops.ipynb`](notebooks/inference_cost_flops.ipynb)
 
